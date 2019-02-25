@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "8"
+
+services:
+  - docker
+
+install:
+    - docker build -t linebot . 
+    - docker tag linebot peterlee0127/linebot
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push peterlee0127/linebot:latest
